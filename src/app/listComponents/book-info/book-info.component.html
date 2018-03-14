@@ -1,0 +1,47 @@
+<!-- 
+    错误的get 传参数方式
+  <div class="col-sm-6 col-lg-4" 
+     routerLink="{{ '/bookList/detail?id='+book.id }}"
+  > 
+-->
+<!-- 
+    GET
+  [queryParams]="对象"
+  对象 ==> 转换为 ?key=value&key=value&……
+  拼接在 请求地址后面
+ -->
+<!-- <div class="col-sm-6 col-lg-4" 
+     routerLink="/detail"
+     [queryParams]="{id:book.id}"
+> -->
+<!-- 
+    RESET
+  [routerLink]="数组"
+  数组
+    ['/detail','sssss',123,'bbbb',……]
+    0 => 请求地址
+    1……  =>  多个参数
+  数组 需要 路由 配置的  配合使用
+    path: '/detail/:s/:n/:b'
+  
+ -->
+ <div class="col-sm-6 col-lg-4" 
+      [routerLink]="['/detail',book.id]"
+>
+  <div class="panel panel-default">
+      <div class="panel-body small-padding">
+        <img class="slide-img" src="{{ book.url }}" alt="" />
+        <dl class="dl-horizontal info-list">
+          <dt>
+            <a href="#">{{ book.bookName }}</a>
+          </dt>
+          <dd>{{ book.price | currency:"CNY":"symbol-narrow":"1.2-2" }}</dd>
+        </dl>
+        <p class="info-list info-desc">{{ book.des }}</p>
+        <!-- 评分 -->
+        <app-star></app-star>
+        <!-- 评分 -->
+      </div>
+  </div>
+</div>
+
